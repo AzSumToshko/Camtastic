@@ -1,16 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Camtastic.Entity;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using Camtastic.Repository;
+using Camtastic.Entity;
 
 namespace Camtastic
 {
@@ -50,6 +45,7 @@ namespace Camtastic
             try
             {
                 driver.FindElement(By.XPath("//button[@id='exifInfoMobile']")).Click();
+                //new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@id='exifInfoMobile']"))).Click();
             }
             catch (Exception ex)
             {
