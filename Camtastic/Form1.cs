@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Camtastic
 {
-    public partial class Form1 : Form
+    public partial class MainScreen : Form
     {
-        public Form1()
+        public MainScreen()
         {
             InitializeComponent();
+        }
+
+        private void search_ClickEvent(object sender, EventArgs e)
+        {
+
         }
     }
 }

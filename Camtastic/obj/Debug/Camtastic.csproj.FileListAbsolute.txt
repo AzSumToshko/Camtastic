@@ -1,0 +1,16 @@
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\Camtastic.exe.config
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\Camtastic.exe
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\Camtastic.pdb
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.AssemblyReference.cache
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.SuggestedBindingRedirects.cache
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.MainScreen.resources
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.Properties.Resources.resources
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.GenerateResource.cache
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.CoreCompileInputs.cache
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.exe
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.pdb
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.dll
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.xml
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.CopyComplete
