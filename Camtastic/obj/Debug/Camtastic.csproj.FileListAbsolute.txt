@@ -14,3 +14,4 @@ C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\En
 C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.xml
 C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.csproj.CopyComplete
+C:\Users\s_dob\OneDrive\Работен плот\Camtastic\Camtastic\obj\Debug\Camtastic.Migrations.initial.resources
