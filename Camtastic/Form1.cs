@@ -41,40 +41,34 @@ namespace Camtastic
             //navigating to the site
             driver.Navigate().GoToUrl(url);
 
-            //checks if the url we search have an existing picture
-            try
-            {
-                driver.FindElement(By.XPath("//button[@id='exifInfoMobile']")).Click();
-                //new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@id='exifInfoMobile']"))).Click();
+
+            //extracting the brand and the model out of the html and checks if the photo we search is found
+            string brand = "";
+            string model = "";
+            try 
+            { 
+                brand = driver.FindElement(
+                    By.XPath("/html/body/div[4]/div[5]/div[1]/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/span")
+                    ).GetAttribute("textContent");
+
+                model = driver.FindElement(
+                    By.XPath("/html/body/div[4]/div[5]/div[1]/div[1]/div/div[2]/div/div[2]/div[2]/div[2]/span")
+                    ).GetAttribute("textContent");
             }
             catch (Exception ex)
             {
-                exceptionsLabel.Text = "The image you search is not found or its deleted !!";
+                exceptionsLabel.Text = "The photo you are searching is deleted or doesnt exist !!";
                 return;
             }
-
-            
-            //extracting the brand and the model out of the html
-            string brand = driver.FindElement(
-                By.XPath("/html/body/div[4]/div[5]/div[1]/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/span")
-                ).Text;
-
-            string model = driver.FindElement(
-                By.XPath("/html/body/div[4]/div[5]/div[1]/div[1]/div/div[2]/div/div[2]/div[2]/div[2]/span")
-                ).Text;
-
-            //checks if theres info on the rows for brand and model
-            if (brand.Equals("") && model.Equals(""))
-            {
-                exceptionsLabel.Text = "The photo you are searching doesnt have information about the camera !!";
-                return;
-            }
-                
 
             //checking if we have extracted exactly the model and the brand else we return 
             DateTime date;
             if (DateTime.TryParse(brand, out date))
+            {
+                exceptionsLabel.Text = "Theres no metadata for this photo !!";
                 return;
+            }
+                
 
             //create and fill the camera and photo entity
             Camera camera = new Camera();
