@@ -6,6 +6,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using Camtastic.Repository;
 using Camtastic.Entity;
+using Microsoft.VisualBasic;
 
 namespace Camtastic
 {
@@ -20,10 +21,15 @@ namespace Camtastic
         {
             InitializeComponent();
             repo = new MainRepository();
+
+            cameraBox.DataSource = repo.getAllCameras();
+            cameraBox.ValueMember = "ID";
+            cameraBox.DisplayMember = "model";
         }
 
         private void search_ClickEvent(object sender, EventArgs e)
         {
+            exceptionsLabel.Text = "";
             //extracting the url from the textbox
             string url = linkInput_textBox.Text;
 
@@ -68,7 +74,7 @@ namespace Camtastic
                 exceptionsLabel.Text = "Theres no metadata for this photo !!";
                 return;
             }
-                
+
 
             //create and fill the camera and photo entity
             Camera camera = new Camera();
@@ -76,7 +82,8 @@ namespace Camtastic
             camera.model = model;
 
             //inserting the camera into the database
-            repo.addCamera(camera);
+            if (!repo.cameraIsExisting(camera))
+                repo.addCamera(camera);
 
             Photo photo = new Photo();
             photo.URL = url;
@@ -87,15 +94,21 @@ namespace Camtastic
             photo.cameraID = repo.findCamera(brand, model).ID;
             photo.camera = repo.findCamera(brand, model);
 
-            //inserting the photo into the database
-            repo.addPhoto(photo);
+            //inserting the photo into the database if absent and if its present updates the rating
+            if (!repo.photoIsExisting(photo))
+                repo.addPhoto(photo);
+            else
+                repo.updatePhoto(photo);
 
             //creating and displaying the message to the textbox
-            string message = $"Photo: \n" +
-                                $"URL: {photo.URL}\n Rating: {photo.rating}\\n" +
-                                $"Camera:\n" +
-                                $"Brand: {brand}\n model: {camera.model}";
-            displayBox.Text = message;
+
+            displayBox.Text = "Photo:" + ControlChars.NewLine +
+                                $"URL: {photo.URL} "+ ControlChars.NewLine + 
+                                $"Rating: {photo.rating}" + ControlChars.NewLine + ControlChars.NewLine +
+                                $"Camera:" + ControlChars.NewLine +
+                                $"Brand: {brand} "+ ControlChars.NewLine + 
+                                $"Model: {camera.model}";
+            driver.Close();
         }
 
         //checks the url wether its correct
@@ -105,6 +118,40 @@ namespace Camtastic
                 return true;
 
             return false;
+        }
+
+        private void cameraBoc_ClickEvent(object sender, EventArgs e)
+        {
+            Camera camera = cameraBox.SelectedItem as Camera;
+
+            displayBox.Text =   $"Camera:" + ControlChars.NewLine +
+                                $"Brand: {camera.brand} " + ControlChars.NewLine +
+                                $"Model: {camera.model}";
+
+            var photoOfCamera = repo.getByCamera(camera.ID);
+
+            displayBox.Text += "Photos of that camera" + ControlChars.NewLine;
+            int counter = 1;
+            foreach (var photo in photoOfCamera)
+            {
+                displayBox.Text += ControlChars.NewLine +
+                                $"Photo {counter}" + ControlChars.NewLine + 
+                                $"URL: {photo.URL} " + ControlChars.NewLine +
+                                $"Rating: {photo.rating}";
+                counter++;
+            }
+        }
+
+        private void bestPhotoBtn_Click(object sender, EventArgs e)
+        {
+            Photo photo = repo.bestPhoto();
+
+            displayBox.Text = "Photo:" + ControlChars.NewLine +
+                                $"URL: {photo.URL} " + ControlChars.NewLine +
+                                $"Rating: {photo.rating}" + ControlChars.NewLine + ControlChars.NewLine +
+                                $"Camera:" + ControlChars.NewLine +
+                                $"Brand: {photo.camera.brand} " + ControlChars.NewLine +
+                                $"Model: {photo.camera.model}";
         }
     }
 }
