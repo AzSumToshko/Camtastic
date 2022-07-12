@@ -108,7 +108,7 @@ namespace Camtastic
                                 $"Camera:" + ControlChars.NewLine +
                                 $"Brand: {brand} "+ ControlChars.NewLine + 
                                 $"Model: {camera.model}";
-            driver.Close();
+            driver.Quit();
         }
 
         //checks the url wether its correct
